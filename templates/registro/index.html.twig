@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- Principal Content Start -->
+    <div id="registro">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <h1>REGISTRO</h1>
+                <hr>
+                <br>
+                {{ form(formulario) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+
+    <!-- Principal Content Start -->
+    <div id="galeria">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <h1>GALERÍA</h1>
+                <hr>
+                {%- block form_errors -%}
+                    <div id="erroresFormularios">
+                        {% for message in app.flashes('Exito') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {%- if errores|length > 0 -%}
+                            <ul>
+                                <div class="alert alert-danger p-10">
+                                    {%- for error in errores -%}
+                                        <li>{{ error }}</li>
+                                    {%- endfor -%}
+                                </div>
+                            </ul>
+                        {%- endif -%}
+                    </div>
+                {%- endblock form_errors -%}
+                {{ form(formulario) }}
+                <br><br><br><br><br>
+                <hr class="divider">
+                <div class="imagenes_galeria">
+                    <!-- Codigo de la tabla -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Visualizaciones</th>
+                            <th scope="col">Likes</th>
+                            <th scope="col">Descargas</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for imagen in arrayImagenes %}
+                        <tr>
+                            <th scope="row">{{ imagen.id }}</th>
+                            <td><img width="100px" src="{{ imagen.getUrlGallery() }}"
+                                     alt="{{ imagen.descripcion }}" title="{{ imagen.descripcion }}">
+                            </td>
+                            <td>{{ imagen.categoria }}</td>
+                            <td>{{ imagen.numVisualizaciones }}</td>
+                            <td>{{ imagen.numLikes }}</td>
+                            <td>{{ imagen.numDownloads }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="address">
+                    <h3>GET IN TOUCH</h3>
+                    <hr>
+                    <div class="ending text-center">
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-facebook sr-icons"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-twitter sr-icons"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-google-plus sr-icons"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="list-inline contact">
+                            <li class="footer-number"><i class="fa fa-phone sr-icons"></i> (00228)92229954</li>
+                            <li><i class="fa fa-envelope sr-icons"></i> kouvenceslas93@gmail.com</li>
+                        </ul>
+                        <p>Photography Fanatic Template &copy; 2017</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Principal Content Start -->
+{% endblock %}

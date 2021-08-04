@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}PROYECTO FINAL{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.css/font-awesome.min.css') }}">
+    {% endblock %}
+</head>
+<body id="page-top">
+{% block body %}
+    <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <span>[PHOTO]</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="menu">
+                <ul class="nav navbar-nav">
+                    <li {% if app.request.get('_route') == 'dashboard' %} class="active lien"{% else %} class="lien" {% endif %}><a href="{{ path('dashboard') }}"><i
+                                    class="fa fa-home sr-icons"></i> Home</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'about' %} class="active lien"{% else %} class="lien" {% endif %}><a href="{{ path('about') }}"><i
+                                    class="fa fa-bookmark sr-icons"></i> About</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'blog' or app.request.get('_route') == 'post'%} class="active lien"{% else %} class="lien" {% endif %}><a href="{{ path('blog') }}"><i
+                                    class="fa fa-file-text sr-icons"></i> Blog</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'mensaje' %} class="active lien"{% else %} class="lien" {% endif %}><a
+                                href="{{ path('mensaje') }}"><i class="fa fa-phone-square sr-icons"></i> Contact</a>
+                    </li>
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li {% if app.request.get('_route') == 'imagen' %} class="active lien"{% else %} class="lien" {% endif %}><a
+                                        href="{{ path('imagen') }}"><i class="fa fa-image"></i> Galería</a>
+                            </li>
+                            <li {% if app.request.get('_route') == 'asociado' %} class="active lien"{% else %} class="lien" {% endif %}><a
+                                        href="{{ path('asociado') }}"><i class="fa fa-image"></i> Asociados</a>
+                            </li>
+                        {% endif %}
+                        <li {% if app.request.get('_route') == 'app_logout' %} class="active lien"{% else %} class="lien" {% endif %}><a href="{{ path('app_logout') }}"><i
+                                        class="fa fa-sign-out"></i>{{ app.user.username }} Salir</a>
+                        </li>
+                    {% else %}
+                    <li {% if app.request.get('_route') == 'app_login' %} class="active lien"{% else %} class="lien" {% endif %}><a href="{{ path('app_login') }}"><i
+                                    class="fa fa-sign-in"></i> Login</a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'registro' %} class="active lien"{% else %} class="lien" {% endif %}><a href="{{ path('registro') }}"><i
+                                    class="fa fa-sign-in"></i> Registro</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Navigation Bar -->
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.easing.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/scrollreveal.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js/bootstrap.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>

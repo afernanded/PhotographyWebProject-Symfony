@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- Principal Content Start -->
+    <div id="contact">
+        <div class="container">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <h1>CONTACT US</h1>
+                <hr>
+                <p>Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                {%- block form_errors -%}
+                    <div id="erroresContacto">
+                        {% for message in app.flashes('Exito') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {%- if errores|length > 0 -%}
+                            <ul>
+                                <div class="alert alert-danger p-10">
+                                    {%- for error in errores -%}
+                                        <li>{{ error }}</li>
+                                    {%- endfor -%}
+                                </div>
+                            </ul>
+                        {%- endif -%}
+                    </div>
+                {%- endblock form_errors -%}
+
+                <div class="form-group">
+                    {{ form_start(formulario) }}
+                    {{ form_errors(formulario) }}
+                    <div class="col-xs-6">
+                        {{ form_row(formulario.nombre) }}
+                    </div>
+                    <div class="col-xs-6">
+                        {{ form_row(formulario.apellidos) }}
+                    </div>
+                    <div class="col-xs-12">
+                        {{ form_row(formulario.asunto) }}
+                        {{ form_row(formulario.email) }}
+                        {{ form_row(formulario.texto) }}
+                        {{ form_row(formulario.enviar) }}
+                    </div>
+                    {{ form_end(formulario) }}
+                </div>
+                <br><br><br><br><br>
+                <hr class="divider">
+                <div class="address">
+                    <h3>GET IN TOUCH</h3>
+                    <hr>
+                    <p>Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit
+                        vero.</p>
+                    <div class="ending text-center">
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-facebook sr-icons"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-twitter sr-icons"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-google-plus sr-icons"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="list-inline contact">
+                            <li class="footer-number"><i class="fa fa-phone sr-icons"></i> (00228)92229954</li>
+                            <li><i class="fa fa-envelope sr-icons"></i> kouvenceslas93@gmail.com</li>
+                        </ul>
+                        <p>Photography Fanatic Template &copy; 2017</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Principal Content Start -->
+{% endblock %}
